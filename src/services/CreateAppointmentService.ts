@@ -5,12 +5,15 @@ import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import { startOfHour } from 'date-fns';
 
 interface RequestDTO {
-  provider: string;
+  provider_id: string;
   date: Date;
 }
 
 class CreateAppointmentServices {
-  public async execute({ date, provider }: RequestDTO): Promise<Appointment> {
+  public async execute({
+    date,
+    provider_id,
+  }: RequestDTO): Promise<Appointment> {
     /** você pode "obter" o repositório usando getCustomRepository e
      * pode acessar qualquer método criado dentro dele e qualquer método
      * no repositório de entidade padrão. */
@@ -29,7 +32,7 @@ class CreateAppointmentServices {
     }
 
     const appointment = appointmentsRepository.create({
-      provider,
+      provider_id,
       date: appointmentDate,
     });
 

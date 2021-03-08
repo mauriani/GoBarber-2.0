@@ -16,7 +16,7 @@ class Appointment {
   id: string;
 
   @Column()
-  provider_id: User;
+  provider_id: string;
 
   // referencia para o prestador de seviço
   @ManyToOne(() => User)
