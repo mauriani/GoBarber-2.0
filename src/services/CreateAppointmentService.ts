@@ -1,4 +1,4 @@
-import Appointment from '../models/appointment';
+import Appointment from '../models/Appointment';
 import { getCustomRepository } from 'typeorm';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 

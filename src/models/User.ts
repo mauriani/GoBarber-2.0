@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+// KISS - Keep It Simple & Stupid
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
@@ -24,7 +25,7 @@ class User {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 }
 
 export default User;

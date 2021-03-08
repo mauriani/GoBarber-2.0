@@ -4,8 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
+import User from './User';
 // ele pega a função enty e envia a classe abaixo, a classe é um parametro - Isso apenas no typescript
 @Entity('appointments')
 class Appointment {
@@ -13,6 +16,11 @@ class Appointment {
   id: string;
 
   @Column()
+  provider_id: User;
+
+  // referencia para o prestador de seviço
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' })
   provider: string;
 
   @Column('timestamp with time zone')
@@ -22,7 +30,7 @@ class Appointment {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 }
 
 export default Appointment;
