@@ -4,6 +4,8 @@ import multer from 'multer';
 import uploadConfig from '../config/upload';
 
 import CreateUserService from '../services/CreateUsersService';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
+
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
@@ -41,8 +43,17 @@ usersRouter.patch(
   ensureAuthenticated,
   upload.single('avatar') /** nome do campo que vai conter essa imagem */,
   async (request, response) => {
-    console.log(request.file);
-    return response.json({ ok: true });
+    try {
+      const updateUserAvatarService = new UpdateUserAvatarService();
+
+      await updateUserAvatarService.execute({
+        user_id: request.user.id,
+        avatarFilename: request.file.filename,
+      });
+      return response.json({ ok: true });
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
   },
 );
 export default usersRouter;
