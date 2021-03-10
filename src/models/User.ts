@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 
 // KISS - Keep It Simple & Stupid
+
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')

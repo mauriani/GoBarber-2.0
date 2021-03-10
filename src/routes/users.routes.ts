@@ -44,13 +44,23 @@ usersRouter.patch(
   upload.single('avatar') /** nome do campo que vai conter essa imagem */,
   async (request, response) => {
     try {
-      const updateUserAvatarService = new UpdateUserAvatarService();
+      const updateUserAvatar = new UpdateUserAvatarService();
 
-      await updateUserAvatarService.execute({
+      const user = await updateUserAvatar.execute({
         user_id: request.user.id,
         avatarFilename: request.file.filename,
       });
-      return response.json({ ok: true });
+
+      const userUpdateAvatar = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+      };
+
+      return response.json(userUpdateAvatar);
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
