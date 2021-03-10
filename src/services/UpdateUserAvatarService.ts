@@ -16,15 +16,16 @@ class UpdateUserAvatarService {
 
     const user = await usersRepository.findOne(user_id);
 
-    console.log(user_id, avatarFilename);
-
     if (!user) {
       throw new Error('Only authenticated users can change avatar.');
     }
 
+    // se ele já tiver um avatar
     if (user.avatar != '') {
+      // Deletar avatar anterior
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
 
+      // verifica se o arquivo existe
       const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
 
       if (userAvatarFileExists) {
