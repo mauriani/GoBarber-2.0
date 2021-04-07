@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '../../users/entities/User';
+import User from '@modules/users/infra/typeorm/entities/User';
 // ele pega a função enty e envia a classe abaixo, a classe é um parametro - Isso apenas no typescript
 @Entity('appointments')
 class Appointment {
