@@ -3,26 +3,28 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
 import AppError from '@shared/errors/AppError';
-import User from '../infra/typeorm/entities/User';
 import authConfig from '@config/auth';
 
-interface Request {
+import IUsersRepository from '../repositories/IUserRepository';
+import User from '../infra/typeorm/entities/User';
+
+interface IRequest {
   email: string;
   password: string;
 }
 
-interface Response {
+interface IResponse {
   user: User;
   token: string;
 }
 
 class AuthenticateUserService {
-  public async execute({ email, password }: Request): Promise<Response> {
+  constructor(private usersRepository: IUsersRepository) {}
+
+  public async execute({ email, password }: IRequest): Promise<IResponse> {
     // validação - verifica se o usuário é válido
 
-    const usersRepository = getRepository(User);
-
-    const user = await usersRepository.findOne({ where: { email } });
+    const user = await this.usersRepository.findByEmail(email);
 
     // caso o usuário não tenha sido encontrado
     if (!user) {
