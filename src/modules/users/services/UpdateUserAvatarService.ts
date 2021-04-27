@@ -34,8 +34,7 @@ class UpdateUserAvatarService {
     }
 
     // se nao
-
-    const filename = await this.storageProvider.saveFile(user.avatar);
+    const filename = await this.storageProvider.saveFile(avatarFilename);
 
     user.avatar = filename;
 

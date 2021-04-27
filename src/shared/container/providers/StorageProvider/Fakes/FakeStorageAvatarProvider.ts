@@ -11,6 +11,7 @@ class FakeStorageProvider implements IStorageProvider {
     const findIndex = this.storage.findIndex(
       storageFile => storageFile === file,
     );
+
     this.storage.splice(findIndex, 1);
   }
 }
