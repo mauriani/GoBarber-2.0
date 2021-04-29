@@ -5,7 +5,7 @@
 
 - O usuário deve poder recuperar sua senha informando o seu e-mail;
 - O usuário deve receber um e-mail com instruções de recuperação de senha;
-- O usuário deve poder resertar a sia senha;
+- O usuário deve poder resertar a sua senha;
 
 *** Requisitos não funcionais ***
 - Utilizar Mailtrap para testar envios em ambiente de desenvolvimento;
@@ -15,7 +15,8 @@
 *** Regras de negócios ***
 
 - link enviado por email para resertar senha, deve expirar em 2h;
-- O usuário precisar confirmar a nova senha para resetar a atual.
+- O usuário precisar confirmar a nova senha para resetar a atual;
+- Identificar o usuário
 
 # Atualização de perfil
 
