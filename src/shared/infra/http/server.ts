@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.tmpFolder));
 app.use(routes);
 
 // obrigado a ter quatro parametros por se trata de um middleware de erro
