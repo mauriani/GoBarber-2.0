@@ -6,17 +6,17 @@ import CreateAppointmentServices from './CreateAppointmentService';
 // Categorizando os nossos testes
 // it - significa isso
 
+let fakeAppointmentsRepository: FakeAppointmentsRepository;
+let createAppointment: CreateAppointmentServices;
+
 describe('CreateAppointment', () => {
-  it('should be able to create a new appointment', async () => {
-    // fakeappoint onde os dados são salvos
-    const fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    // CRIANDO O SERVICE
-    // meu create appoint espera dois parametros (create e findByEmail),
-    // passamos a fake api onde temos essas funcionalidades.
-    const createAppointment = new CreateAppointmentServices(
+  beforeEach(() => {
+    fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    createAppointment = new CreateAppointmentServices(
       fakeAppointmentsRepository,
     );
-
+  });
+  it('should be able to create a new appointment', async () => {
     const appointment = await createAppointment.execute({
       date: new Date(),
       provider_id: '123456',
@@ -28,11 +28,6 @@ describe('CreateAppointment', () => {
   });
 
   it('should not be able to create two appointments on the same time', async () => {
-    const fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    const createAppointment = new CreateAppointmentServices(
-      fakeAppointmentsRepository,
-    );
-
     const appointmentDate = new Date(2021, 4, 26, 15);
 
     await createAppointment.execute({
