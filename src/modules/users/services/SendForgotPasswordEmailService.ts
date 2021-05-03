@@ -15,29 +15,30 @@ interface IRequest {
 @injectable()
 class SendForgotPasswordEmailService {
   constructor(
-    @inject('UserRepository')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('IMailProvider')
+    @inject('MailProvider')
     private mailProvider: IMailProvider,
 
     @inject('UserTokensRepository')
-    private UserTokensRepository: IUserTokensRepository,
+    private userTokensRepository: IUserTokensRepository,
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
     // verificando se o email existe e fazendo passar no teste
+
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('User does not exists.');
     }
 
-    await this.UserTokensRepository.generate(user.id);
+    const { token } = await this.userTokensRepository.generate(user.id);
 
-    this.mailProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
-      'Pedido de recuperação de senha recebido',
+      `Pedido de recuperação de senha recebido ${token}`,
     );
   }
 }
