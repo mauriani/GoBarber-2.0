@@ -33,8 +33,29 @@ class ListProviderMonthAvailabilityService {
       },
     );
 
-    console.log(appointments);
-    return [{ day: 1, available: false }];
+    // retorna quantos dias tem no mes
+    const numberOfDaysInMonth = getDaysInMonth(new Date(year, month - 1));
+
+    // para cada dia do mês vou criar um array com a seguinte estrutura
+    const eachDayArray = Array.from(
+      { length: numberOfDaysInMonth },
+      (_, index) => index + 1,
+    );
+
+    // verifica se tem agendamento nesse dia especifico
+    const availability = eachDayArray.map(day => {
+      const appointmentsInDay = appointments.filter(appointment => {
+        return getDate(appointment.date) === day;
+      });
+
+      return {
+        day,
+        available: appointmentsInDay.length < 10,
+      };
+    });
+
+    console.log(availability);
+    return availability;
   }
 }
 
