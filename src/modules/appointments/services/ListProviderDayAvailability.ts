@@ -1,7 +1,8 @@
 import { injectable, inject } from 'tsyringe';
-import { getHours } from 'date-fns';
+import { getHours, isAfter } from 'date-fns';
 
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
+import { compare } from 'bcryptjs';
 
 interface IRequest {
   provider_id: string;
@@ -37,8 +38,6 @@ class ListProviderDayAvailabilityService {
       },
     );
 
-    console.log(appointments);
-
     // horarios disponiveis no meu dia
 
     const hourStar = 8;
@@ -48,15 +47,19 @@ class ListProviderDayAvailabilityService {
       (_, index) => index + hourStar,
     );
 
-    console.log('eachHourArray', eachHourArray);
+    const currentDate = new Date(Date.now());
 
     const availability = eachHourArray.map(hour => {
       const hasAppointmentInHour = appointments.find(
         appointment => getHours(appointment.date) === hour,
       );
+
+      const compareDate = new Date(year, month - 1, day, hour);
+
       return {
         hour,
-        available: !hasAppointmentInHour,
+        // se o horario e depois do tempo atual - isAfter
+        available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
       };
     });
 
