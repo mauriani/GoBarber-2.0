@@ -30,16 +30,18 @@ class AppointmentsRepository implements IAppointmentsRepository {
     // já o nosso MM-YYYY do to char devolve os meses da seguinte forma 01,02,03 ...
     // vamos modificar o nosso formato para não dá BO.
     const parsedMonth = String(month).padStart(2, '0');
+
+    // to char metodo do postgress para converter a data em um determinado modulo
     const appointments = await this.ormRepository.find({
       where: {
         provider_id,
-        // to char metodo do postgress para converter a data em um determinado modulo
         date: Raw(
           dateFieldName =>
             `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`,
         ),
       },
     });
+
     return appointments;
   }
 
