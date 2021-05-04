@@ -17,6 +17,7 @@
     ],
     "rules": {
       "prettier/prettier": "error",
+      "@ts-expect-error":"off",
       "no-useless-constructor":"off",
       "no-use-before-define": "off",
       "class-methods-use-this":"off",
