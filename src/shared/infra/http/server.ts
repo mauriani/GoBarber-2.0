@@ -31,7 +31,6 @@ app.use(
         message: err.message,
       });
     }
-    console.log('status', err);
 
     return response.status(500).json({
       status: 'error',
