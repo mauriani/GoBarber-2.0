@@ -1,5 +1,7 @@
 import AppError from '@shared/errors/AppError';
+
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
+import INotificationRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 import CreateAppointmentServices from './CreateAppointmentService';
 
@@ -7,6 +9,7 @@ import CreateAppointmentServices from './CreateAppointmentService';
 // it - significa isso
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
+let notificationRepository: INotificationRepository;
 let createAppointment: CreateAppointmentServices;
 
 describe('CreateAppointment', () => {
@@ -14,6 +17,7 @@ describe('CreateAppointment', () => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
     createAppointment = new CreateAppointmentServices(
       fakeAppointmentsRepository,
+      notificationRepository,
     );
   });
   it('should be able to create a new appointment', async () => {
