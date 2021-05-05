@@ -8,6 +8,7 @@ import AppError from '@shared/errors/AppError';
 
 interface IRequestDTO {
   provider_id: string;
+  user_id: string;
   date: Date;
 }
 @injectable()
@@ -19,6 +20,7 @@ class CreateAppointmentServices {
 
   public async execute({
     date,
+    user_id,
     provider_id,
   }: IRequestDTO): Promise<Appointment> {
     /** você pode "obter" o repositório usando getCustomRepository e
@@ -39,6 +41,7 @@ class CreateAppointmentServices {
     const appointment = await this.appointmentsRepository.create({
       provider_id,
       date: appointmentDate,
+      user_id,
     });
 
     return appointment;
