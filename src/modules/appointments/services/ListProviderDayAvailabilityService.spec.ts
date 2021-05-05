@@ -1,6 +1,6 @@
 import FakeAppointmentRepository from '@modules/appointments/repositories/fakes/FakeAppointmentsRepository';
 
-import ListProviderDayAvailabilityService from './ListProviderDayAvailability';
+import ListProviderDayAvailabilityService from './ListProviderDayAvailabilityService';
 
 let fakeAppointmentRepository: FakeAppointmentRepository;
 let listProviderDayAvailability: ListProviderDayAvailabilityService;
