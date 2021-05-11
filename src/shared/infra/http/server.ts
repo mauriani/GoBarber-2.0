@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import 'express-async-errors';
 
 import routes from './routes';
@@ -19,6 +20,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.tmpFolder));
 app.use(routes);
+
+app.use(errors());
 
 // obrigado a ter quatro parametros por se trata de um middleware de erro
 

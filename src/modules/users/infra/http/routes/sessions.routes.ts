@@ -1,8 +1,18 @@
 import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
 import SessionsController from '../controllers/SessionsController';
 
 const sessionsRouter = Router();
 const sessionsController = new SessionsController();
 
-sessionsRouter.post('/', sessionsController.create);
+sessionsRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    }).unknown(),
+  }),
+  sessionsController.create,
+);
 export default sessionsRouter;

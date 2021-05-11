@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { celebrate, Joi, Segments } from 'celebrate';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 
@@ -14,7 +15,17 @@ const userAvatarController = new UserAvatarController();
 
 const upload = multer(uploadConfig);
 
-usersRouter.post('/', usersController.create);
+usersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: Joi.object({
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    }).unknown(),
+  }),
+  usersController.create,
+);
 
 // vamos criar um rota para alterar um único usuário, por isso estamos utilizando o patch
 usersRouter.patch(
