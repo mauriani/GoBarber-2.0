@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
+
 import SessionsController from '../controllers/SessionsController';
 
 const sessionsRouter = Router();
@@ -11,7 +12,7 @@ sessionsRouter.post(
     [Segments.BODY]: Joi.object({
       email: Joi.string().email().required(),
       password: Joi.string().required(),
-    }).unknown(),
+    }),
   }),
   sessionsController.create,
 );

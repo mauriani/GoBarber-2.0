@@ -17,7 +17,7 @@ appointmentsRouter.post(
     [Segments.BODY]: Joi.object({
       provider_id: Joi.string().uuid().required(),
       date: Joi.date().required(),
-    }).unknown(),
+    }),
   }),
   appointmentsController.create,
 );

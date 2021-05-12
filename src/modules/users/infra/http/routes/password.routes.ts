@@ -14,7 +14,7 @@ passwordRouter.post(
   celebrate({
     [Segments.BODY]: Joi.object({
       email: Joi.string().email().required(),
-    }).unknown(),
+    }),
   }),
   forgotPasswordController.create,
 );
@@ -25,7 +25,7 @@ passwordRouter.post(
       password: Joi.string().required(),
       password_confirmation: Joi.string().required().valid(Joi.ref('password')),
       token: Joi.string().uuid().required(),
-    }).unknown(),
+    }),
   }),
   resetPasswordController.create,
 );
