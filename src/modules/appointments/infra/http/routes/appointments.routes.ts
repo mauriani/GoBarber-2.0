@@ -14,10 +14,10 @@ appointmentsRouter.use(ensureAuthenticated);
 appointmentsRouter.post(
   '/',
   celebrate({
-    [Segments.BODY]: Joi.object({
+    [Segments.BODY]: {
       provider_id: Joi.string().uuid().required(),
-      date: Joi.date().required(),
-    }),
+      date: Joi.date(),
+    },
   }),
   appointmentsController.create,
 );
