@@ -28,7 +28,6 @@ app.use(errors());
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
-    console.log(err);
     // se eu conheço o erro cai aqui
     if (err instanceof AppError) {
       return response.status(err.statusCode).json({
