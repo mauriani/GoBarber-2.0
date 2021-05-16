@@ -40,7 +40,7 @@ class ListProviderAppointmentsService {
       },
     );
 
-    // await this.cacheProvider.save('ssd', 'shsu');
+    await this.cacheProvider.save('ssd', 'shsu');
     return appointments;
   }
 }
