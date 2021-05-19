@@ -57,6 +57,7 @@ class CreateAppointmentServices {
     // não permitir que o usuário crie um agendamento no mesmo horário
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
       appointmentDate,
+      provider_id,
     );
 
     if (findAppointmentInSameDate) {
