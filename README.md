@@ -1,3 +1,8 @@
+# GoBarber - BackEnd
+
+<img alt="GoStack" src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/header-desafios-new.png" />
+
+
 ## 🚀 Sobre o projeto
 
 API GoBarber, ela foi desenvolvida durante toda a jornada do GoStack 11 onde aprendemos diversos conceitos e tecnologias como AWS, DTO ( Padrão de projeto), NodeJs, Typeormetc. O projeto é para ***Barbeiros e Cabeleireiros,*** o nosso público consegue acessar a aplicação e ver os agendamentos que foram marcados, consegue se autenticar, criar cadastro etc.
