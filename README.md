@@ -2,10 +2,10 @@
 
 API GoBarber, ela foi desenvolvida durante toda a jornada do GoStack 11 onde aprendemos diversos conceitos e tecnologias como AWS, DTO ( Padrão de projeto), NodeJs, Typeormetc. O projeto é para ***Barbeiros e Cabeleireiros,*** o nosso público consegue acessar a aplicação e ver os agendamentos que foram marcados, consegue se autenticar, criar cadastro etc.
 
-Aplicações
+***Aplicações***
 
-- Aplicação Web
-- Aplicação Mobile
+- [Aplicação Web](https://github.com/mauriani/GoBarber-Web)
+- [Aplicação Mobile](https://github.com/mauriani/GoBarber-Mobile)
 
 ## 💻Funcionalidades
 
