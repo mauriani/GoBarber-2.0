@@ -123,6 +123,23 @@ Nossas funcionalidades foram divididas entre ***requisitos funcionais, não func
 
 - [Insomnia](https://insomnia.rest/download) ( Para realizar teste na API)
 
+- ***Typeorm***
+
+```tsx
+#Criacao
+yarn typeorm migration:create -n CreateAppointments
+
+#Executar/rodar
+yarn typeorm migration:run
+
+#Rollback
+yarn typeorm migration:revert
+
+#visualizar quais migrtios foram executas
+
+yarn typeorm migration:show
+```
+
 ### ✏️ Clonando Projeto
 
 ```
